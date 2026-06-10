@@ -47,5 +47,32 @@ namespace kcsj.Forms
 
             form.ShowDialog();
         }
+
+        private void 手动输入ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManualInputForm form = new ManualInputForm();
+
+            form.ShowDialog();
+        }
+
+        private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 开始平差ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 查看结果ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 输出报告ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

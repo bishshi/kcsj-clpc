@@ -50,6 +50,7 @@
             button2.TabIndex = 1;
             button2.Text = "手动输入";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // DataInputForm
             // 
@@ -58,6 +59,7 @@
             ClientSize = new Size(288, 218);
             Controls.Add(button2);
             Controls.Add(DataFromFiles);
+            MaximizeBox = false;
             Name = "DataInputForm";
             Text = "数据输入";
             ResumeLayout(false);

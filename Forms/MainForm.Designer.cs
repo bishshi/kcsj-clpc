@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             MainTitle = new Label();
             btnDataInput = new Button();
             btnDataInspect = new Button();
@@ -56,7 +57,7 @@
             MainTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             MainTitle.AutoSize = true;
             MainTitle.Font = new Font("微软雅黑", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            MainTitle.Location = new Point(236, 55);
+            MainTitle.Location = new Point(231, 55);
             MainTitle.Name = "MainTitle";
             MainTitle.Size = new Size(182, 31);
             MainTitle.TabIndex = 0;
@@ -159,32 +160,33 @@
             // 
             数据输入ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 从文件ToolStripMenuItem, 手动输入ToolStripMenuItem });
             数据输入ToolStripMenuItem.Name = "数据输入ToolStripMenuItem";
-            数据输入ToolStripMenuItem.Size = new Size(270, 34);
+            数据输入ToolStripMenuItem.Size = new Size(218, 34);
             数据输入ToolStripMenuItem.Text = "数据输入";
             // 
             // 从文件ToolStripMenuItem
             // 
             从文件ToolStripMenuItem.Name = "从文件ToolStripMenuItem";
-            从文件ToolStripMenuItem.Size = new Size(270, 34);
+            从文件ToolStripMenuItem.Size = new Size(182, 34);
             从文件ToolStripMenuItem.Text = "从文件";
             从文件ToolStripMenuItem.Click += 从文件ToolStripMenuItem_Click;
             // 
             // 手动输入ToolStripMenuItem
             // 
             手动输入ToolStripMenuItem.Name = "手动输入ToolStripMenuItem";
-            手动输入ToolStripMenuItem.Size = new Size(270, 34);
+            手动输入ToolStripMenuItem.Size = new Size(182, 34);
             手动输入ToolStripMenuItem.Text = "手动输入";
+            手动输入ToolStripMenuItem.Click += 手动输入ToolStripMenuItem_Click;
             // 
             // 删除当前数据ToolStripMenuItem
             // 
             删除当前数据ToolStripMenuItem.Name = "删除当前数据ToolStripMenuItem";
-            删除当前数据ToolStripMenuItem.Size = new Size(270, 34);
+            删除当前数据ToolStripMenuItem.Size = new Size(218, 34);
             删除当前数据ToolStripMenuItem.Text = "删除当前数据";
             // 
             // 数据检查ToolStripMenuItem
             // 
             数据检查ToolStripMenuItem.Name = "数据检查ToolStripMenuItem";
-            数据检查ToolStripMenuItem.Size = new Size(270, 34);
+            数据检查ToolStripMenuItem.Size = new Size(218, 34);
             数据检查ToolStripMenuItem.Text = "数据检查";
             // 
             // 开始平差ToolStripMenuItem
@@ -192,24 +194,28 @@
             开始平差ToolStripMenuItem.Name = "开始平差ToolStripMenuItem";
             开始平差ToolStripMenuItem.Size = new Size(98, 28);
             开始平差ToolStripMenuItem.Text = "开始平差";
+            开始平差ToolStripMenuItem.Click += 开始平差ToolStripMenuItem_Click;
             // 
             // 查看结果ToolStripMenuItem
             // 
             查看结果ToolStripMenuItem.Name = "查看结果ToolStripMenuItem";
             查看结果ToolStripMenuItem.Size = new Size(98, 28);
             查看结果ToolStripMenuItem.Text = "查看结果";
+            查看结果ToolStripMenuItem.Click += 查看结果ToolStripMenuItem_Click;
             // 
             // 输出报告ToolStripMenuItem
             // 
             输出报告ToolStripMenuItem.Name = "输出报告ToolStripMenuItem";
             输出报告ToolStripMenuItem.Size = new Size(98, 28);
             输出报告ToolStripMenuItem.Text = "输出报告";
+            输出报告ToolStripMenuItem.Click += 输出报告ToolStripMenuItem_Click;
             // 
             // 关于ToolStripMenuItem
             // 
             关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
             关于ToolStripMenuItem.Size = new Size(62, 28);
             关于ToolStripMenuItem.Text = "关于";
+            关于ToolStripMenuItem.Click += 关于ToolStripMenuItem_Click;
             // 
             // MainForm
             // 
@@ -226,6 +232,7 @@
             Controls.Add(btnDataInput);
             Controls.Add(MainTitle);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             Name = "MainForm";

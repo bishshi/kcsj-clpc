@@ -39,6 +39,7 @@
             dgvKnownPoints = new DataGridView();
             dgvObservations = new DataGridView();
             txtKnownPoints = new Label();
+            txtGuance = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvKnownPoints).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvObservations).BeginInit();
             SuspendLayout();
@@ -128,7 +129,7 @@
             // dgvObservations
             // 
             dgvObservations.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvObservations.Location = new Point(31, 409);
+            dgvObservations.Location = new Point(31, 425);
             dgvObservations.Name = "dgvObservations";
             dgvObservations.RowHeadersWidth = 62;
             dgvObservations.Size = new Size(710, 245);
@@ -143,11 +144,21 @@
             txtKnownPoints.TabIndex = 10;
             txtKnownPoints.Text = "已知点";
             // 
+            // txtGuance
+            // 
+            txtGuance.AutoSize = true;
+            txtGuance.Location = new Point(350, 389);
+            txtGuance.Name = "txtGuance";
+            txtGuance.Size = new Size(64, 24);
+            txtGuance.TabIndex = 11;
+            txtGuance.Text = "观测值";
+            // 
             // FileInputForm
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(769, 714);
+            Controls.Add(txtGuance);
             Controls.Add(txtKnownPoints);
             Controls.Add(dgvObservations);
             Controls.Add(dgvKnownPoints);
@@ -181,5 +192,6 @@
         private DataGridView dgvKnownPoints;
         private DataGridView dgvObservations;
         private Label txtKnownPoints;
+        private Label txtGuance;
     }
 }
