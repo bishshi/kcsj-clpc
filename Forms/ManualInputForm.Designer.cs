@@ -40,7 +40,7 @@
             HeightDifference = new DataGridViewTextBoxColumn();
             Distance = new DataGridViewTextBoxColumn();
             btnOK = new Button();
-            button2 = new Button();
+            btnCancel = new Button();
             GroupKnown.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvKnownInput).BeginInit();
             GroupObservation.SuspendLayout();
@@ -149,21 +149,21 @@
             btnOK.UseVisualStyleBackColor = true;
             btnOK.UseWaitCursor = true;
             // 
-            // button2
+            // btnCancel
             // 
-            button2.Location = new Point(651, 485);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 34);
-            button2.TabIndex = 4;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            btnCancel.Location = new Point(651, 485);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(112, 34);
+            btnCancel.TabIndex = 4;
+            btnCancel.Text = "取消";
+            btnCancel.UseVisualStyleBackColor = true;
             // 
             // ManualInputForm
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1278, 556);
-            Controls.Add(button2);
+            Controls.Add(btnCancel);
             Controls.Add(btnOK);
             Controls.Add(GroupObservation);
             Controls.Add(GroupKnown);
@@ -192,6 +192,6 @@
         private DataGridViewTextBoxColumn HeightDifference;
         private DataGridViewTextBoxColumn Distance;
         private Button btnOK;
-        private Button button2;
+        private Button btnCancel;
     }
 }
