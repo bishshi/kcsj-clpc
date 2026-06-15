@@ -59,6 +59,7 @@
             ClientSize = new Size(288, 218);
             Controls.Add(button2);
             Controls.Add(DataFromFiles);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             Name = "DataInputForm";
             Text = "数据输入";

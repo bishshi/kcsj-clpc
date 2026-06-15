@@ -64,7 +64,6 @@
             // 
             // btnSubmitData
             // 
-            btnSubmitData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnSubmitData.Location = new Point(641, 38);
             btnSubmitData.Name = "btnSubmitData";
             btnSubmitData.Size = new Size(106, 83);
@@ -170,6 +169,7 @@
             Controls.Add(btnSubmitData);
             Controls.Add(KonwnSFile);
             Controls.Add(KnownPointFile);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             Name = "FileInputForm";
             Text = "文件读取";

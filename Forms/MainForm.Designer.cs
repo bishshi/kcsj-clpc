@@ -232,6 +232,7 @@
             Controls.Add(btnDataInput);
             Controls.Add(MainTitle);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;

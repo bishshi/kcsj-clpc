@@ -148,6 +148,7 @@
             btnOK.Text = "提交";
             btnOK.UseVisualStyleBackColor = true;
             btnOK.UseWaitCursor = true;
+            btnOK.Click += btnOK_Click;
             // 
             // btnCancel
             // 
@@ -157,6 +158,7 @@
             btnCancel.TabIndex = 4;
             btnCancel.Text = "取消";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // ManualInputForm
             // 

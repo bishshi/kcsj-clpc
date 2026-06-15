@@ -80,7 +80,7 @@ namespace kcsj.Forms
             }
         }
 
-        // 按空格、Tab、英文逗号、中文逗号分割每一行
+        // 按空格、Tab、英文逗号、中文逗号分割
         private string[] SplitLine(string line)
         {
             return line.Split(new char[] { ' ', '\t', ',', '，' },
@@ -150,9 +150,6 @@ namespace kcsj.Forms
                 if (string.IsNullOrWhiteSpace(line))
                     continue;
 
-                if (line.StartsWith("#") || line.StartsWith("//"))
-                    continue;
-
                 string[] parts = SplitLine(line);
 
                 if (parts.Length != 4)
@@ -194,7 +191,7 @@ namespace kcsj.Forms
             return result;
         }
 
-        // 设置表格中文表头
+        // 设置表格表头
         private void SetGridHeader()
         {
             if (dgvKnownPoints.Columns.Count > 0)
