@@ -34,7 +34,7 @@
             PointName = new DataGridViewTextBoxColumn();
             Elevation = new DataGridViewTextBoxColumn();
             GroupObservation = new GroupBox();
-            dataGridView1 = new DataGridView();
+            dgvObservationInput = new DataGridView();
             StartPoint = new DataGridViewTextBoxColumn();
             EndPoint = new DataGridViewTextBoxColumn();
             HeightDifference = new DataGridViewTextBoxColumn();
@@ -44,7 +44,7 @@
             GroupKnown.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvKnownInput).BeginInit();
             GroupObservation.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvObservationInput).BeginInit();
             SuspendLayout();
             // 
             // TitleManualInput
@@ -93,7 +93,7 @@
             // 
             // GroupObservation
             // 
-            GroupObservation.Controls.Add(dataGridView1);
+            GroupObservation.Controls.Add(dgvObservationInput);
             GroupObservation.Location = new Point(481, 50);
             GroupObservation.Name = "GroupObservation";
             GroupObservation.Size = new Size(771, 408);
@@ -101,15 +101,15 @@
             GroupObservation.TabStop = false;
             GroupObservation.Text = "观测值";
             // 
-            // dataGridView1
+            // dgvObservationInput
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { StartPoint, EndPoint, HeightDifference, Distance });
-            dataGridView1.Location = new Point(15, 29);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(730, 355);
-            dataGridView1.TabIndex = 0;
+            dgvObservationInput.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvObservationInput.Columns.AddRange(new DataGridViewColumn[] { StartPoint, EndPoint, HeightDifference, Distance });
+            dgvObservationInput.Location = new Point(15, 29);
+            dgvObservationInput.Name = "dgvObservationInput";
+            dgvObservationInput.RowHeadersWidth = 62;
+            dgvObservationInput.Size = new Size(730, 355);
+            dgvObservationInput.TabIndex = 0;
             // 
             // StartPoint
             // 
@@ -175,7 +175,7 @@
             GroupKnown.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvKnownInput).EndInit();
             GroupObservation.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvObservationInput).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -188,7 +188,7 @@
         private GroupBox GroupObservation;
         private DataGridViewTextBoxColumn PointName;
         private DataGridViewTextBoxColumn Elevation;
-        private DataGridView dataGridView1;
+        private DataGridView dgvObservationInput;
         private DataGridViewTextBoxColumn StartPoint;
         private DataGridViewTextBoxColumn EndPoint;
         private DataGridViewTextBoxColumn HeightDifference;

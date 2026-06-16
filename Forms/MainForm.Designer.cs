@@ -82,6 +82,7 @@
             btnDataInspect.TabIndex = 2;
             btnDataInspect.Text = "数据检查";
             btnDataInspect.UseVisualStyleBackColor = true;
+            btnDataInspect.Click += btnDataInspect_Click;
             // 
             // btnStartAdjust
             // 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using kcsj.Models;
+using kcsj.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,12 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using kcsj.Services;
 
 namespace kcsj.Forms
 {
     public partial class MainForm : Form
     {
+
         public MainForm()
         {
             InitializeComponent();
@@ -45,7 +47,12 @@ namespace kcsj.Forms
         {
             FileInputForm form = new FileInputForm();
 
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                LogService.AddLog("主窗体已接收文件导入数据。");
+                LogService.AddLog($"已知点数量：{DataStore.KnownPoints.Count}");
+                LogService.AddLog($"观测数据数量：{DataStore.Observations.Count}");
+            }
         }
 
         private void 手动输入ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -73,6 +80,31 @@ namespace kcsj.Forms
         private void 输出报告ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnDataInspect_Click(object sender, EventArgs e)
+        {
+            DataCheckResult result = DataCheck.Check(DataStore.KnownPoints, DataStore.Observations);
+
+            LogService.AddLog(result.ToLogText());
+            LogService.AddLog(Environment.NewLine);
+
+            if (!result.IsValid)
+            {
+                MessageBox.Show(
+                    "数据检查未通过，请查看日志信息。",
+                    "数据检查",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            MessageBox.Show(
+                "数据检查通过，可以进行平差计算。",
+                "数据检查",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
     }
 }

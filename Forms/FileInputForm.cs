@@ -277,14 +277,17 @@ namespace kcsj.Forms
                 }
 
                 // 把数据交给主窗体
+                DataStore.SetData(knownPoints, observations, "文件导入");
+
                 ImportedKnownPoints = knownPoints;
                 ImportedObservations = observations;
 
                 MessageBox.Show("数据导入成功！");
-                LogService.AddLog("数据导入成功！");
+                LogService.AddLog("文件数据导入成功！");
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
+
             }
             catch (Exception ex)
             {
