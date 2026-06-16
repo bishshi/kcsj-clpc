@@ -17,7 +17,7 @@ namespace kcsj.Services
         {
             var lines = new List<string>();
 
-            lines.Add("========== 数据检查结果 ==========");
+            lines.Add("数据检查结果:");
 
             foreach (string info in Infos)
             {
@@ -35,7 +35,6 @@ namespace kcsj.Services
             }
 
             lines.Add(IsValid ? "数据检查通过。" : "数据检查未通过。");
-            lines.Add("================================");
 
             return string.Join(Environment.NewLine, lines);
         }

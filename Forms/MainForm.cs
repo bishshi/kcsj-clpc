@@ -55,7 +55,8 @@ namespace kcsj.Forms
 
         private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(
+                "水准测量间接平差程序");
         }
 
         private void 开始平差ToolStripMenuItem_Click(object sender, EventArgs e)
