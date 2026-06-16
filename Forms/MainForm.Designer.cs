@@ -92,6 +92,7 @@
             btnStartAdjust.TabIndex = 3;
             btnStartAdjust.Text = "开始平差";
             btnStartAdjust.UseVisualStyleBackColor = true;
+            btnStartAdjust.Click += btnStartAdjust_Click;
             // 
             // button2
             // 
@@ -161,7 +162,7 @@
             // 
             数据输入ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 从文件ToolStripMenuItem, 手动输入ToolStripMenuItem });
             数据输入ToolStripMenuItem.Name = "数据输入ToolStripMenuItem";
-            数据输入ToolStripMenuItem.Size = new Size(218, 34);
+            数据输入ToolStripMenuItem.Size = new Size(270, 34);
             数据输入ToolStripMenuItem.Text = "数据输入";
             // 
             // 从文件ToolStripMenuItem
@@ -181,14 +182,16 @@
             // 删除当前数据ToolStripMenuItem
             // 
             删除当前数据ToolStripMenuItem.Name = "删除当前数据ToolStripMenuItem";
-            删除当前数据ToolStripMenuItem.Size = new Size(218, 34);
+            删除当前数据ToolStripMenuItem.Size = new Size(270, 34);
             删除当前数据ToolStripMenuItem.Text = "删除当前数据";
+            删除当前数据ToolStripMenuItem.Click += 删除当前数据ToolStripMenuItem_Click;
             // 
             // 数据检查ToolStripMenuItem
             // 
             数据检查ToolStripMenuItem.Name = "数据检查ToolStripMenuItem";
-            数据检查ToolStripMenuItem.Size = new Size(218, 34);
+            数据检查ToolStripMenuItem.Size = new Size(270, 34);
             数据检查ToolStripMenuItem.Text = "数据检查";
+            数据检查ToolStripMenuItem.Click += 数据检查ToolStripMenuItem_Click;
             // 
             // 开始平差ToolStripMenuItem
             // 
