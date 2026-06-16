@@ -205,6 +205,22 @@ namespace kcsj.Services
 
                 double residual = V[i, 0];
                 double adjustedHeightDiff = obs.HeightDiff + residual;
+                double adjustedHeightDiffError = double.NaN;
+
+                if (!double.IsNaN(sigma0))
+                {
+                    double q = 0.0;
+
+                    for (int row = 0; row < unknownCount; row++)
+                    {
+                        for (int column = 0; column < unknownCount; column++)
+                        {
+                            q += B[i, row] * Qxx[row, column] * B[i, column];
+                        }
+                    }
+
+                    adjustedHeightDiffError = sigma0 * Math.Sqrt(Math.Abs(q));
+                }
 
                 result.Residuals.Add(residual);
                 result.AdjustedHeightDiffs.Add(adjustedHeightDiff);
@@ -218,7 +234,8 @@ namespace kcsj.Services
                     Distance = obs.Distance,
                     Weight = weights[i],
                     Residual = residual,
-                    AdjustedHeightDiff = adjustedHeightDiff
+                    AdjustedHeightDiff = adjustedHeightDiff,
+                    AdjustedHeightDiffError = adjustedHeightDiffError
                 });
             }
 

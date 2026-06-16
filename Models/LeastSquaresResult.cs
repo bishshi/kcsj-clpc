@@ -64,5 +64,10 @@ namespace kcsj.Models
         /// 平差后高差 h + v
         /// </summary>
         public double AdjustedHeightDiff { get; set; }
+
+        /// <summary>
+        /// 平差后高差中误差
+        /// </summary>
+        public double AdjustedHeightDiffError { get; set; }
     }
 }
