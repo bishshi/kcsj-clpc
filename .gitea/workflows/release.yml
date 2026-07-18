@@ -1,0 +1,65 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  code: read
+  releases: write
+
+jobs:
+  release:
+    name: Publish Windows x64
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Build Windows executable
+        shell: bash
+        env:
+          TAG_NAME: ${{ gitea.ref_name }}
+        run: |
+          set -euo pipefail
+
+          version="${TAG_NAME#v}"
+          if [[ -z "${version}" ]]; then
+            echo "The release tag must contain a version, for example v1.0.0."
+            exit 1
+          fi
+
+          dotnet publish ./kcsj.csproj \
+            --configuration Release \
+            --runtime win-x64 \
+            --self-contained true \
+            --output ./publish \
+            -p:EnableWindowsTargeting=true \
+            -p:PublishSingleFile=true \
+            -p:IncludeNativeLibrariesForSelfExtract=true \
+            -p:DebugType=None \
+            -p:Version="${version}"
+
+          mkdir -p ./dist
+          mv ./publish/kcsj.exe "./dist/kcsj-${TAG_NAME}-win-x64.exe"
+
+      # Gitea's release action is written in Go and is compiled by the runner.
+      - name: Set up Go for the release action
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Create Gitea release
+        uses: https://gitea.com/actions/release-action@main
+        with:
+          title: ${{ gitea.ref_name }}
+          files: |-
+            dist/*
+          api_key: ${{ secrets.GITEA_TOKEN }}
