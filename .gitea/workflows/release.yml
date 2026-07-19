@@ -43,6 +43,7 @@ jobs:
             --output ./publish \
             -p:EnableWindowsTargeting=true \
             -p:PublishSingleFile=true \
+            -p:EnableCompressionInSingleFile=true \
             -p:IncludeNativeLibrariesForSelfExtract=true \
             -p:DebugType=None \
             -p:Version="${version}"
