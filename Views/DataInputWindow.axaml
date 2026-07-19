@@ -1,0 +1,108 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="kcsj.Views.DataInputWindow"
+        Title="数据输入"
+        Width="900"
+        Height="700"
+        MinWidth="720"
+        MinHeight="580"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel Margin="24">
+    <Grid DockPanel.Dock="Bottom" ColumnDefinitions="*,Auto" Margin="0,18,0,0">
+      <TextBlock x:Name="InputStatusText"
+                 VerticalAlignment="Center"
+                 Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                 Text="请选择文件或切换到手动输入。" />
+      <Button Grid.Column="1" MinWidth="92" Content="关闭" Click="Cancel_Click" />
+    </Grid>
+
+    <TabControl x:Name="DataTabs">
+      <TabItem Header="从文件导入">
+        <Grid Margin="18" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="14">
+          <Grid ColumnDefinitions="120,*,Auto" ColumnSpacing="10">
+            <TextBlock VerticalAlignment="Center" Text="已知点文件" />
+            <TextBox x:Name="KnownPathTextBox" Grid.Column="1" IsReadOnly="True" PlaceholderText="请选择 TXT 文件" />
+            <Button Grid.Column="2" Content="浏览…" Click="BrowseKnownFile_Click" />
+          </Grid>
+
+          <Grid Grid.Row="1" ColumnDefinitions="120,*,Auto" ColumnSpacing="10">
+            <TextBlock VerticalAlignment="Center" Text="观测数据文件" />
+            <TextBox x:Name="ObservationPathTextBox" Grid.Column="1" IsReadOnly="True" PlaceholderText="请选择 TXT 文件" />
+            <Button Grid.Column="2" Content="浏览…" Click="BrowseObservationFile_Click" />
+          </Grid>
+
+          <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="10">
+            <Button MinWidth="110" Content="预览数据" Click="PreviewFiles_Click" />
+            <Button MinWidth="110" Content="导入数据" Click="ImportFiles_Click" />
+          </StackPanel>
+
+          <Grid Grid.Row="3" ColumnDefinitions="*,*" ColumnSpacing="14">
+            <Grid RowDefinitions="Auto,*">
+              <TextBlock Margin="0,0,0,8" FontWeight="SemiBold" Text="已知点预览" />
+              <TextBox x:Name="KnownPreviewTextBox"
+                       Grid.Row="1"
+                       IsReadOnly="True"
+                       AcceptsReturn="True"
+                       TextWrapping="NoWrap"
+                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                       ScrollViewer.VerticalScrollBarVisibility="Auto"
+                       FontFamily="Consolas,Menlo,monospace" />
+            </Grid>
+            <Grid Grid.Column="1" RowDefinitions="Auto,*">
+              <TextBlock Margin="0,0,0,8" FontWeight="SemiBold" Text="观测数据预览" />
+              <TextBox x:Name="ObservationPreviewTextBox"
+                       Grid.Row="1"
+                       IsReadOnly="True"
+                       AcceptsReturn="True"
+                       TextWrapping="NoWrap"
+                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                       ScrollViewer.VerticalScrollBarVisibility="Auto"
+                       FontFamily="Consolas,Menlo,monospace" />
+            </Grid>
+          </Grid>
+        </Grid>
+      </TabItem>
+
+      <TabItem Header="手动输入">
+        <Grid Margin="18" RowDefinitions="Auto,*,Auto" RowSpacing="14">
+          <Border Padding="12"
+                  Background="{DynamicResource SystemControlBackgroundBaseLowBrush}"
+                  CornerRadius="6">
+            <TextBlock TextWrapping="Wrap"
+                       Text="每行一条数据，可使用空格、Tab 或逗号分隔；空行以及以 # 或 // 开头的行会被忽略。" />
+          </Border>
+
+          <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="14">
+            <Grid RowDefinitions="Auto,*">
+              <TextBlock Margin="0,0,0,8" FontWeight="SemiBold" Text="已知点（点名 高程）" />
+              <TextBox x:Name="ManualKnownTextBox"
+                       Grid.Row="1"
+                       AcceptsReturn="True"
+                       TextWrapping="NoWrap"
+                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                       ScrollViewer.VerticalScrollBarVisibility="Auto"
+                       PlaceholderText="例如：&#10;BM1 100.0000"
+                       FontFamily="Consolas,Menlo,monospace" />
+            </Grid>
+            <Grid Grid.Column="1" RowDefinitions="Auto,*">
+              <TextBlock Margin="0,0,0,8" FontWeight="SemiBold" Text="观测数据（起点 终点 高差 距离）" />
+              <TextBox x:Name="ManualObservationTextBox"
+                       Grid.Row="1"
+                       AcceptsReturn="True"
+                       TextWrapping="NoWrap"
+                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                       ScrollViewer.VerticalScrollBarVisibility="Auto"
+                       PlaceholderText="例如：&#10;BM1 P1 1.2345 2.5"
+                       FontFamily="Consolas,Menlo,monospace" />
+            </Grid>
+          </Grid>
+
+          <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="10">
+            <Button MinWidth="110" Content="检查并预览" Click="PreviewManual_Click" />
+            <Button MinWidth="110" Content="保存数据" Click="SaveManual_Click" />
+          </StackPanel>
+        </Grid>
+      </TabItem>
+    </TabControl>
+  </DockPanel>
+</Window>

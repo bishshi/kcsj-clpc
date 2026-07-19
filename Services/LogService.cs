@@ -8,7 +8,7 @@ namespace kcsj.Services
 {
     public static class LogService
     {
-        public static event Action<string> OnLog;
+        public static event Action<string>? OnLog;
         public static void AddLog(string message)
         {
             string time = DateTime.Now.ToString("HH:mm:ss");

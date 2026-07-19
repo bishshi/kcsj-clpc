@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   release:
-    name: Publish Windows x64
+    name: Publish Windows, Linux and macOS
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +23,8 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      - name: Build Windows executable
+      - name: Read release metadata
+        id: metadata
         shell: bash
         env:
           TAG_NAME: ${{ gitea.ref_name }}
@@ -36,20 +37,51 @@ jobs:
             exit 1
           fi
 
-          dotnet publish ./kcsj.csproj \
-            --configuration Release \
-            --runtime win-x64 \
-            --self-contained true \
-            --output ./publish \
-            -p:EnableWindowsTargeting=true \
-            -p:PublishSingleFile=true \
-            -p:EnableCompressionInSingleFile=true \
-            -p:IncludeNativeLibrariesForSelfExtract=true \
-            -p:DebugType=None \
-            -p:Version="${version}"
+          prerelease=false
+          if [[ "${version}" == *-* ]]; then
+            prerelease=true
+          fi
 
+          echo "version=${version}" >> "${GITEA_OUTPUT}"
+          echo "prerelease=${prerelease}" >> "${GITEA_OUTPUT}"
+
+      - name: Publish all desktop platforms
+        shell: bash
+        env:
+          TAG_NAME: ${{ gitea.ref_name }}
+          VERSION: ${{ steps.metadata.outputs.version }}
+        run: |
+          set -euo pipefail
+
+          runtimes=(win-x64 linux-x64 osx-x64)
           mkdir -p ./dist
-          mv ./publish/kcsj.exe "./dist/kcsj-${TAG_NAME}-win-x64.exe"
+
+          for runtime in "${runtimes[@]}"; do
+            publish_dir="./publish/${runtime}"
+
+            dotnet publish ./kcsj.csproj \
+              --configuration Release \
+              --runtime "${runtime}" \
+              --self-contained true \
+              --output "${publish_dir}" \
+              -p:PublishSingleFile=true \
+              -p:EnableCompressionInSingleFile=true \
+              -p:IncludeNativeLibrariesForSelfExtract=true \
+              -p:DebugType=None \
+              -p:Version="${VERSION}"
+
+            if [[ "${runtime}" == "win-x64" ]]; then
+              cp "${publish_dir}/kcsj.exe" "./dist/kcsj-${TAG_NAME}-${runtime}.exe"
+            else
+              tar -czf "./dist/kcsj-${TAG_NAME}-${runtime}.tar.gz" \
+                -C "${publish_dir}" .
+            fi
+          done
+
+          (
+            cd ./dist
+            sha256sum kcsj-* > SHA256SUMS.txt
+          )
 
       # Gitea's release action is written in Go and is compiled by the runner.
       - name: Set up Go for the release action
@@ -61,6 +93,7 @@ jobs:
         uses: https://gitea.com/actions/release-action@main
         with:
           title: ${{ gitea.ref_name }}
+          pre_release: ${{ steps.metadata.outputs.prerelease }}
           files: |-
             dist/*
           api_key: ${{ secrets.GITEA_TOKEN }}

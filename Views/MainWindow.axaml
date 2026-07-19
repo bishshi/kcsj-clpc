@@ -1,0 +1,70 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="kcsj.Views.MainWindow"
+        Title="水准网平差程序"
+        Width="980"
+        Height="680"
+        MinWidth="780"
+        MinHeight="560"
+        WindowStartupLocation="CenterScreen">
+  <DockPanel>
+    <Menu DockPanel.Dock="Top">
+      <MenuItem Header="数据管理">
+        <MenuItem Header="从文件导入" Click="OpenFileInput_Click" />
+        <MenuItem Header="手动输入" Click="OpenManualInput_Click" />
+        <Separator />
+        <MenuItem Header="删除当前数据" Click="ClearData_Click" />
+        <MenuItem Header="数据检查" Click="CheckData_Click" />
+      </MenuItem>
+      <MenuItem Header="开始平差" Click="RunAdjustment_Click" />
+      <MenuItem Header="查看结果" Click="ShowResult_Click" />
+      <MenuItem Header="输出报告" Click="ExportReport_Click" />
+      <MenuItem Header="关于" Click="About_Click" />
+    </Menu>
+
+    <Border DockPanel.Dock="Bottom"
+            Padding="12,7"
+            Background="{DynamicResource SystemControlBackgroundBaseLowBrush}">
+      <TextBlock x:Name="DataStatusText" Text="当前未加载数据" />
+    </Border>
+
+    <Grid Margin="28" ColumnDefinitions="220,24,*" RowDefinitions="Auto,*">
+      <StackPanel Grid.ColumnSpan="3" Margin="0,0,0,24">
+        <TextBlock Text="水准网平差程序" FontSize="28" FontWeight="SemiBold" />
+        <TextBlock Margin="0,6,0,0"
+                   Text="基于 Avalonia 的跨平台水准测量间接平差工具"
+                   Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+      </StackPanel>
+
+      <StackPanel Grid.Row="1" Grid.Column="0" Spacing="12">
+        <Button Height="52" Content="数据输入" Click="OpenDataInput_Click" />
+        <Button Height="52" Content="数据检查" Click="CheckData_Click" />
+        <Button Height="52" Content="开始平差" Click="RunAdjustment_Click" />
+        <Button Height="52" Content="查看结果" Click="ShowResult_Click" />
+        <Button Height="52" Content="输出报告" Click="ExportReport_Click" />
+      </StackPanel>
+
+      <Border Grid.Row="1"
+              Grid.Column="2"
+              Padding="20"
+              BorderThickness="1"
+              BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
+              CornerRadius="8">
+        <Grid RowDefinitions="Auto,*">
+          <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,12">
+            <TextBlock Text="运行日志" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" />
+            <Button Grid.Column="1" Content="清除日志" Click="ClearLog_Click" />
+          </Grid>
+          <TextBox x:Name="LogTextBox"
+                   Grid.Row="1"
+                   IsReadOnly="True"
+                   AcceptsReturn="True"
+                   TextWrapping="Wrap"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto"
+                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                   FontFamily="Consolas,Menlo,monospace" />
+        </Grid>
+      </Border>
+    </Grid>
+  </DockPanel>
+</Window>

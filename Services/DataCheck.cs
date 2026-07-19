@@ -71,10 +71,10 @@ namespace kcsj.Services
                 return result;
             }
 
-            CheckKnownPoints(knownPoints, result);
-            CheckObservations(observations, result);
-            CheckNetwork(knownPoints, observations, result);
-            CheckRedundancy(knownPoints, observations, result);
+            CheckKnownPoints(knownPoints!, result);
+            CheckObservations(observations!, result);
+            CheckNetwork(knownPoints!, observations!, result);
+            CheckRedundancy(knownPoints!, observations!, result);
 
             return result;
         }
